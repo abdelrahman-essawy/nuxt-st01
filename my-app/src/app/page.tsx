@@ -1,14 +1,14 @@
 "use client"
 import { Inter } from 'next/font/google'
 import styles from './styles/page.module.css'
-import { Navbar } from './components/navbar/Navbar'
+import { Navbar } from '../components/navbar/Navbar'
 import { useSession, signIn, signOut } from "next-auth/react"
+import { Dashboard } from '@/components/dashboard/Dashboard'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const { data, status } = useSession()
-  console.log(data, status)
   return (
     <main className={styles.main}>
       {/* <p>
@@ -17,8 +17,13 @@ export default function Home() {
         </p> */}
 
       <header className={styles.header}>
-        <Navbar signIn={signIn} signOut={signOut} session={data} />
+        <Navbar signIn={signIn} signOut={signOut} data={data} status={status} />
       </header>
+
+      {
+        data && status === 'authenticated' &&
+        <Dashboard data={data} />
+      }
 
     </main>
 
