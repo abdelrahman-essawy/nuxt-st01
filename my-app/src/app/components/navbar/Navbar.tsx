@@ -3,7 +3,13 @@ import Image from 'next/image'
 import React from 'react'
 import styles from './navbar.module.css'
 
-export const Navbar = () => {
+interface NavbarProps {
+    signIn: () => void
+    signOut: () => void
+    session: any
+}
+
+export const Navbar = ({ signIn, signOut, session }: NavbarProps) => {
     return (
         <>
             <div className={styles.center}>
@@ -20,7 +26,7 @@ export const Navbar = () => {
                 </div>
             </div>
 
-            <Button>Login</Button>
+            <Button onClick={() => signIn()}>Login</Button>
         </>
     )
 }
