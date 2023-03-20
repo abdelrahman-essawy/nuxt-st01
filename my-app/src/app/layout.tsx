@@ -1,4 +1,6 @@
+import { Navbar } from './components/navbar/navbar'
 import './globals.css'
+import styles from './page.module.css'
 
 export const metadata = {
   title: 'Create Next App',
@@ -12,7 +14,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
-    </html>
+      <body>
+        <header className={styles.header}>
+          <Navbar />
+        </header>
+
+        <main className={styles.main}>
+          {children}
+        </main>
+      </body>
+    </html >
   )
 }
