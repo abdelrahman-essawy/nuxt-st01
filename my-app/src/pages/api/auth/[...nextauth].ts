@@ -8,23 +8,19 @@ async function getUsers() {
     //         return JSON.parse(data);
     //     })
 
-    return await fetch('http://localhost:3000/users.json')
-        .then((res) => res.json())
-}
-
-const auth = async (username: string, password: string) => {
-    const users = await getUsers();
     try {
-        const user = users.find((user: any) => user.username === username);
-
-        if (!user) throw new Error("User not found");
-        if (user.password !== password) throw new Error("Incorrect password");
-
-        return user;
+        return await fetch('http://localhost:3000/users.json')
+            .then((res) => res.json())
     }
     catch (err) {
-        console.log(err);
+        console.log(err)
+        return []
     }
+}
+
+const authenticate = async (username: string, password: string) => {
+    const users = await getUsers();
+    return users.find((user: any) => user.username === username && user.password === password);
 }
 
 const authOptions: NextAuthOptions = {
@@ -41,7 +37,7 @@ const authOptions: NextAuthOptions = {
                     password: string;
                 };
 
-                return (async () => await auth(username, password))();
+                return authenticate(username, password)
 
             },
         }),

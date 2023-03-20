@@ -22,7 +22,7 @@ export default function Home() {
 
       {
         data && status === 'authenticated' &&
-        <Dashboard data={data} />
+        <Dashboard />
       }
 
     </main>

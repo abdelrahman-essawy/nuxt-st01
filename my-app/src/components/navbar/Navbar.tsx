@@ -11,7 +11,6 @@ interface NavbarProps {
 }
 
 export const Navbar = ({ signIn, signOut, data, status }: NavbarProps) => {
-    console.log(data)
     return (
         <>
             <div className={styles.center}>

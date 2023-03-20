@@ -28,6 +28,8 @@ const handleSubmission = async (username: String, password: String) => {
 
 
 const page = () => {
+    const { data, status } = useSession()
+    console.log(data, status)
     const users = use(getUsersPromise)
 
     const [selectedUser, setSelectedUser] = React.useState<String>('' || users[0]?.username)
@@ -58,8 +60,8 @@ const page = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 style={{ padding: 8, width: 300 }} type="password" placeholder="Enter Password" required />
 
-            <Button onClick={() => handleSubmission(selectedUser, password)}>Sign in</Button>
-        </div >
+            <Button onClick={(e) => handleSubmission(selectedUser, password)}>Sign in</Button>
+        </div>
     )
 }
 export default page
