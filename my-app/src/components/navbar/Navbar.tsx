@@ -9,10 +9,11 @@ interface User {
     name: string;
 }
 
+
 interface NavbarProps {
     signIn: () => void;
     signOut: () => void;
-    data: { user: User } | null;
+    data: { user: User } | null | any;
     status: 'loading' | 'authenticated' | 'unauthenticated';
 }
 
