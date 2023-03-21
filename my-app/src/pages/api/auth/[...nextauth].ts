@@ -37,7 +37,7 @@ const authOptions: NextAuthOptions = {
                     password: string;
                 };
 
-                return authenticate(username, password)
+                return authenticate(username, password) ?? new Error('Wrong credentials. Try again.')
 
             },
         }),
