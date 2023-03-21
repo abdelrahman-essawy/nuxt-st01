@@ -1,6 +1,4 @@
-import axios from 'axios'
-import React, { use } from 'react'
-import { useSession, signIn, signOut } from "next-auth/react"
+import React from 'react'
 import styles from './dashboard.module.css'
 import Button from '@/app/utilities/Button'
 import { Todo } from './Todo'
@@ -9,16 +7,19 @@ import { useTasksCRUD } from '@/hooks/useTasksCRUD'
 
 export const Dashboard = () => {
     const [todoText, setTodoText] = React.useState('')
-
-
+    const [todoTextError, setTodoTextError] = React.useState('')
 
     const { addTask, deleteTask, getTasks, toggleTask } = useTasksCRUD()
     const { error, isLoading, mutate, todos } = getTasks()
 
-
     const handleAddTodo = async (task: string) => {
+        if (!task) {
+            setTodoTextError('Please enter a task')
+            return
+        }
         await addTask(task)
         setTodoText('')
+        setTodoTextError('')
         mutate()
     }
 
@@ -45,6 +46,7 @@ export const Dashboard = () => {
                     <Button color='secondary'
                         onClick={() => handleAddTodo(todoText)}>Add</Button>
                 </div>
+                <p className={styles.error}>{todoTextError}</p>
 
                 <h2>Tasks</h2>
 
