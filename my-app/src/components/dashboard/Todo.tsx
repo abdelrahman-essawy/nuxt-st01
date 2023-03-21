@@ -23,7 +23,7 @@ export const Todo = ({
             <div className={styles.contollers}>
                 {
                     completed ?
-                        <input onClick={() => handleToggle(id)} className={styles.formcontrol} type="checkbox" checked />
+                        <input onClick={() => handleToggle(id)} className={styles.formcontrol} type="checkbox" defaultChecked />
                         :
                         <input onClick={() => handleToggle(id)} className={styles.formcontrol} type="checkbox" />
                 }

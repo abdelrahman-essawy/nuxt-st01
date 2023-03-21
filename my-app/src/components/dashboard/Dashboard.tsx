@@ -41,11 +41,11 @@ export const Dashboard = () => {
             <div>
                 <div className={styles.newtask}>
                     <input
-                        onKeyDown={(e) => e.key === 'Enter' && handleAddTodo(todoText)}
+                        onKeyDown={(e) => e.key === 'Enter' && handleAddTodo(e.currentTarget.value)}
                         onChange={(e) => setTodoText(e.target.value)}
                         value={todoText} type="text" placeholder="Add Tasks" />
                     <Button
-                        onClick={() => handleAddTodo(todoText)}
+                        onClick={(e) => handleAddTodo(e.currentTarget.value)}
                         color='secondary'>Add</Button>
                 </div>
                 <p className={styles.error}>{todoTextError}</p>
