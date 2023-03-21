@@ -1,47 +1,49 @@
-import React from 'react'
-import styles from './button.module.css'
+import React from 'react';
+import styles from './button.module.css';
 
 export type ButtonProps = {
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
-  children?: React.ReactNode
-  color?: "primary" | "secondary" | "danger"
-  disabled?: boolean
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  children?: React.ReactNode;
+  color?: 'primary' | 'secondary' | 'danger';
+  disabled?: boolean;
 };
 
 const Button = ({
   onClick,
   children,
-  color = "primary",
+  color = 'primary',
   disabled,
 }: ButtonProps) => {
+  let buttonStyle;
 
   switch (color) {
-    case "primary":
-      return <button onClick={onClick} disabled={disabled} className={styles.button}>
-        {children}
-      </button>
+    case 'primary':
+      buttonStyle = styles.primaryButton;
       break;
 
-    case "danger":
-      return <button onClick={onClick} disabled={disabled} style={{ backgroundColor: 'red', fontWeight: 800 }} className={styles.button}>
-        {children}
-      </button>
+    case 'danger':
+      buttonStyle = styles.dangerButton;
       break;
 
-
-    case "secondary":
-      return <button onClick={onClick} disabled={disabled} style={{ backgroundColor: 'blue', color: 'white' }} className={styles.button}>
-        {children}
-      </button>
+    case 'secondary':
+      buttonStyle = styles.secondaryButton;
       break;
 
     default:
-      return <button onClick={onClick} disabled={disabled} className={styles.button}>
-        {children}
-      </button>
+      buttonStyle = styles.button;
       break;
   }
 
-}
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={`${styles.button} ${buttonStyle}`}
+      style={color === 'danger' ? { backgroundColor: 'red', fontWeight: 800 } : color === 'secondary' ? { backgroundColor: 'blue', color: 'white' } : {}}
+    >
+      {children}
+    </button>
+  );
+};
 
-export default Button
+export default Button;
