@@ -221,3 +221,10 @@
   margin-inline: auto;
   margin-top: 2rem;
 }
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  margin-bottom: auto;
+}

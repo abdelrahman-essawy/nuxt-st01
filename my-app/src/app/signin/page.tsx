@@ -32,8 +32,6 @@ const handleSubmission = async (username: String, password: String, setAuthError
 
 
 const Page = () => {
-    const { data, status } = useSession()
-    console.log(data, status)
     const users = use(getUsersPromise)
     const [authError, setAuthError] = React.useState<String>('')
 
@@ -64,7 +62,6 @@ const Page = () => {
             <input
                 onChange={(e) => setPassword(e.target.value)}
                 style={{ padding: 8, width: 300 }} type="password" placeholder="Enter Password" required />
-
             <Button onClick={(e) => handleSubmission(selectedUser, password, setAuthError, router)}>Sign in</Button>
 
             <p>{authError}</p>

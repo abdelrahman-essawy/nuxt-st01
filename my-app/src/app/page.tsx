@@ -11,15 +11,19 @@ export default function Home() {
   const { data, status } = useSession()
   return (
     <main className={styles.main}>
-      {/* <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p> */}
 
       <header className={styles.header}>
         <Navbar signIn={signIn} signOut={signOut} data={data} status={status} />
       </header>
 
+
+      {
+        status === 'loading' ? <p className={styles.title}>Loading...</p> :
+          <h1 className={styles.title}>
+            Todo App
+          </h1>
+
+      }
       {
         data && status === 'authenticated' &&
         <Dashboard />
