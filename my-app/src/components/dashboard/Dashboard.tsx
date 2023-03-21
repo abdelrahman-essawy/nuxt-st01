@@ -38,13 +38,15 @@ export const Dashboard = () => {
         <div className={styles.main}>
             <h1 className={styles.title}>Dashboard</h1>
 
-
             <div>
-
                 <div className={styles.newtask}>
-                    <input onChange={(e) => setTodoText(e.target.value)} value={todoText} type="text" placeholder="Add Tasks" />
-                    <Button color='secondary'
-                        onClick={() => handleAddTodo(todoText)}>Add</Button>
+                    <input
+                        onKeyDown={(e) => e.key === 'Enter' && handleAddTodo(todoText)}
+                        onChange={(e) => setTodoText(e.target.value)}
+                        value={todoText} type="text" placeholder="Add Tasks" />
+                    <Button
+                        onClick={() => handleAddTodo(todoText)}
+                        color='secondary'>Add</Button>
                 </div>
                 <p className={styles.error}>{todoTextError}</p>
 
@@ -72,12 +74,7 @@ export const Dashboard = () => {
 
                     }
                 </div>
-
             </div>
-
-
-
-
         </div>
     )
 }

@@ -60,9 +60,14 @@ const Page = () => {
 
             <label>Password</label>
             <input
+                onKeyDown={
+                    (e) => e.key === 'Enter' && handleSubmission(selectedUser, password, setAuthError, router)
+                }
                 onChange={(e) => setPassword(e.target.value)}
                 style={{ padding: 8, width: 300 }} type="password" placeholder="Enter Password" required />
-            <Button onClick={(e) => handleSubmission(selectedUser, password, setAuthError, router)}>Sign in</Button>
+            <Button
+                onClick={(e) => handleSubmission(selectedUser, password, setAuthError, router)}
+            >Sign in</Button>
 
             <p>{authError}</p>
         </div>
