@@ -1,35 +1,40 @@
-import Button from '@/app/utilities/Button'
-import React from 'react'
-import styles from './dashboard.module.css'
+import React from 'react';
+import Button from '@/app/utilities/Button';
+import styles from './dashboard.module.css';
 
 interface TodoProps {
-    id: string
-    task: string
-    completed: boolean
-    handleDelete: (id: string) => Promise<void>
-    handleToggle: (id: string) => Promise<void>
+    id: string;
+    task: string;
+    completed: boolean;
+    handleDelete: (id: string) => Promise<void>;
+    handleToggle: (id: string) => Promise<void>;
 }
+
 export const Todo = ({
     id,
     task,
     completed,
     handleDelete,
-    handleToggle
+    handleToggle,
 }: TodoProps) => {
+    const checkboxProps = {
+        className: styles.formcontrol,
+        type: 'checkbox',
+        onClick: () => handleToggle(id),
+    };
+
     return (
         <div className={styles.task} key={id}>
             <h2>{task}</h2>
-            <p>{completed}</p>
             <div className={styles.contollers}>
-                {
-                    completed ?
-                        <input onClick={() => handleToggle(id)} className={styles.formcontrol} type="checkbox" defaultChecked />
-                        :
-                        <input onClick={() => handleToggle(id)} className={styles.formcontrol} type="checkbox" />
-                }
-                <Button color='danger' onClick={() => handleDelete(id)}>Delete</Button>
+                <input
+                    {...checkboxProps}
+                    defaultChecked={completed}
+                />
+                <Button color="danger" onClick={() => handleDelete(id)}>
+                    Delete
+                </Button>
             </div>
         </div>
-    )
-
-}
+    );
+};
